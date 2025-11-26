@@ -1,0 +1,123 @@
+.main-header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #a27ea6;
+  letter-spacing: 2px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #a27ea6;
+}
+
+.auth-section {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-login,
+.btn-cadastro,
+.btn-reserva,
+.btn-admin,
+.btn-logout {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.btn-login {
+  background-color: transparent;
+  color: #a27ea6;
+  border: 1px solid #a27ea6;
+}
+
+.btn-login:hover {
+  background-color: #a27ea6;
+  color: white;
+}
+
+.btn-cadastro,
+.btn-reserva {
+  background-color: #a27ea6;
+  color: white;
+}
+
+.btn-cadastro:hover,
+.btn-reserva:hover {
+  background-color: #926e96;
+}
+
+.btn-admin {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn-admin:hover {
+  background-color: #357abd;
+}
+
+.btn-logout {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .main-nav {
+    justify-content: center;
+  }
+
+  .auth-section {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

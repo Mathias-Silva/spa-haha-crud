@@ -1,0 +1,80 @@
+<app-header></app-header>
+
+<main class="tipos-massagem-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Conheça as diversas técnicas de massagem disponíveis!</h1>
+      <p>Escolha o tipo de massagem ideal para você e agende seu momento de relaxamento.</p>
+    </div>
+    <div class="hero-image">
+      <img src="assets/img/image3.png" alt="Tipos de massagem">
+    </div>
+  </section>
+
+  <!-- Serviços Section -->
+  <section class="servicos-section">
+    <h2>Seu momento de relaxamento começa aqui.</h2>
+    <div class="massagens-grid" *ngIf="!loading">
+      <div 
+        class="massagem-card" 
+        *ngFor="let m of massagens"
+        [class.selected]="selectedMassagem?._id === m._id"
+        (click)="selectMassagem(m)">
+        <h3>{{ m.nome }}</h3>
+        <p class="preco">R$ {{ m.preco | number:'1.2-2' }}</p>
+        <p class="descricao">{{ m.descricao }}</p>
+        <button class="btn-selecionar">Selecionar</button>
+      </div>
+    </div>
+    <div *ngIf="loading" class="loading">Carregando massagens...</div>
+  </section>
+
+  <!-- Calendário Section -->
+  <section class="calendario-section" *ngIf="selectedMassagem">
+    <h2>Escolha seu momento de relaxamento.</h2>
+    <div class="calendario-container">
+      <div class="calendario">
+        <h3>{{ getMonthName() }}</h3>
+        <div class="calendario-grid">
+          <div class="dia-semana" *ngFor="let dia of ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']">
+            {{ dia }}
+          </div>
+          <div 
+            class="dia" 
+            *ngFor="let dia of getDaysInMonth()"
+            [class.today]="isToday(dia)"
+            [class.selected]="selectedDate === dia.toISOString().split('T')[0]"
+            (click)="selectDate(dia)">
+            {{ dia.getDate() }}
+          </div>
+        </div>
+      </div>
+
+      <div class="horarios-section">
+        <h3>Horários Disponíveis</h3>
+        <div class="horarios-grid">
+          <button 
+            *ngFor="let h of horarios"
+            class="horario-btn"
+            [class.selected]="selectedHorario === h"
+            (click)="selectedHorario = h">
+            {{ h }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reserva-summary" *ngIf="selectedMassagem && selectedDate && selectedHorario">
+      <h3>Resumo da Reserva</h3>
+      <p><strong>Massagem:</strong> {{ selectedMassagem.nome }}</p>
+      <p><strong>Preço:</strong> R$ {{ selectedMassagem.preco | number:'1.2-2' }}</p>
+      <p><strong>Data:</strong> {{ selectedDate | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Horário:</strong> {{ selectedHorario }}</p>
+      <button class="btn-reservar" (click)="reservar()">Confirmar Reserva</button>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>
+

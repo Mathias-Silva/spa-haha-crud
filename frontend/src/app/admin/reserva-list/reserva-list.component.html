@@ -1,0 +1,53 @@
+<div class="reserva-list-header">
+  <h2>Reservas Realizadas</h2>
+  <button (click)="carregar()" class="btn-refresh">🔄 Atualizar</button>
+</div>
+
+<div *ngIf="reservas.length === 0" class="sem-reservas">
+  <p>Nenhuma reserva encontrada.</p>
+</div>
+
+<table *ngIf="reservas.length > 0" class="reservas-table">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Email</th>
+      <th>Massagem</th>
+      <th>Data</th>
+      <th>Horário</th>
+      <th>Pagamento</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of reservas" [class.pago]="r.pago">
+      <td>{{ getUserNome(r.user) }}</td>
+      <td>{{ getUserEmail(r.user) }}</td>
+      <td>{{ getMassagemNome(r.massagem) }}</td>
+      <td>{{ r.data | date:'dd/MM/yyyy' }}</td>
+      <td>{{ r.horario }}</td>
+      <td>
+        <span class="status-pagamento" [class.pago]="r.pago" [class.nao-pago]="!r.pago">
+          {{ r.pago ? '✓ Pago' : '✗ Pendente' }}
+        </span>
+      </td>
+      <td class="acoes">
+        <button 
+          *ngIf="!r.pago" 
+          (click)="marcarComoPago(r._id!)" 
+          class="btn-pago"
+          title="Marcar como pago">
+          ✓
+        </button>
+        <button 
+          *ngIf="r.pago" 
+          (click)="marcarComoNaoPago(r._id!)" 
+          class="btn-nao-pago"
+          title="Marcar como não pago">
+          ✗
+        </button>
+        <button (click)="excluir(r._id!)" class="btn-excluir" title="Excluir reserva">🗑️</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

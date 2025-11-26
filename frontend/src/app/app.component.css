@@ -1,0 +1,154 @@
+/* Cores baseadas nas imagens de referência */
+:root {
+    --cor-primaria: #a27ea6; /* Tom do botão Login/Cadastro */
+    --cor-fundo: #fdf6f7; /* Fundo claro da tela */
+    --cor-texto: #333;
+    --cor-link: #a27ea6; 
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--cor-fundo);
+    margin: 0;
+    padding: 0;
+}
+
+/* Containers de Login e Cadastro */
+.login-container, .cadastro-container {
+    display: flex;
+    min-height: 100vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.imagem-area {
+    /* Ocupa a maior parte da tela de login/cadastro */
+    flex: 2; 
+    overflow: hidden;
+    /* Imagem placeholder - Você deve substituir isso no HTML */
+    background-color: #e0e0e0;
+}
+
+.imagem-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra toda a área */
+}
+
+.formulario-area {
+    flex: 1; /* Ocupa menos espaço, à direita */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o formulário verticalmente */
+    align-items: center;
+    background-color: white;
+}
+
+.logo {
+    max-width: 150px;
+    margin-bottom: 30px;
+}
+
+.formulario-area form {
+    width: 100%;
+    max-width: 300px; /* Limita a largura do formulário */
+}
+
+.formulario-area label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: var(--cor-texto);
+}
+
+.formulario-area input[type="email"],
+.formulario-area input[type="password"],
+.formulario-area input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.esqueci-senha {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    color: var(--cor-link);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.btn-login, .btn-cadastro {
+    width: 100%;
+    padding: 12px;
+    margin-top: 30px;
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover, .btn-cadastro:hover {
+    background-color: #926e96;
+}
+
+.cadastro-link, .login-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.cadastro-link a, .login-link a {
+    color: var(--cor-link);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.pagina-inicial {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    color: var(--cor-link);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.pagina-inicial span {
+    margin-right: 5px;
+}
+
+/* Estilo para a checkbox de termos */
+.termos {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+.termos input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+.termos label {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+/* Responsividade simples para telas pequenas */
+@media (max-width: 768px) {
+    .login-container, .cadastro-container {
+        flex-direction: column;
+    }
+    .imagem-area {
+        flex: 0;
+        min-height: 150px;
+    }
+    .formulario-area {
+        flex: 1;
+        padding: 20px;
+    }
+}

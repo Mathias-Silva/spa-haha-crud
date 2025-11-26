@@ -1,0 +1,36 @@
+<main class="cadastro-container">
+  <section class="formulario-area">
+    <header>
+      <div class="logo">
+        <span class="logo-text">Spa Haha</span>
+      </div>
+      <h2>Bem-vindo de volta</h2>
+    </header>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <label for="email">E-mail *</label>
+      <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail">
+
+      <label for="senha">Senha *</label>
+      <input type="password" id="senha" formControlName="senha" placeholder="Digite sua senha:">
+
+      <p class="esqueceu-senha">
+        <a routerLink="/recuperar-senha">Esqueceu sua senha?</a>
+      </p>
+
+      <div *ngIf="erro" class="erro-mensagem">{{ erro }}</div>
+
+      <button type="submit" class="btn-cadastro" [disabled]="carregando">
+        {{ carregando ? 'Entrando...' : 'Login' }}
+      </button>
+    </form>
+    
+    <p class="login-link">
+      Não tem cadastro? <a (click)="irParaCadastro()"><strong>Cadastre-se!</strong></a>
+    </p>
+  </section>
+
+  <article class="imagem-area">
+    <img src="assets/img/image2.png" alt="Pessoa recebendo massagem relaxante">
+  </article>
+</main>

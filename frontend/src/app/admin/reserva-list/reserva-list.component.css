@@ -1,0 +1,140 @@
+.reserva-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.reserva-list-header h2 {
+  margin: 0;
+  color: #1a1a2e;
+}
+
+.btn-refresh {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-refresh:hover {
+  background-color: #357abd;
+}
+
+.sem-reservas {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.reservas-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reservas-table thead {
+  background-color: #a27ea6;
+  color: white;
+}
+
+.reservas-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.reservas-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.reservas-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.reservas-table tbody tr.pago {
+  background-color: #d4edda;
+}
+
+.status-pagamento {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-pagamento.pago {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-pagamento.nao-pago {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-pago,
+.btn-nao-pago,
+.btn-excluir {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.btn-pago {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-pago:hover {
+  background-color: #218838;
+}
+
+.btn-nao-pago {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-nao-pago:hover {
+  background-color: #e0a800;
+}
+
+.btn-excluir {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-excluir:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .reservas-table {
+    font-size: 0.85rem;
+  }
+
+  .reservas-table th,
+  .reservas-table td {
+    padding: 0.5rem;
+  }
+
+  .acoes {
+    flex-direction: column;
+  }
+}
+

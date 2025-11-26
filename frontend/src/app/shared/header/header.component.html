@@ -1,0 +1,30 @@
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-section">
+      <a routerLink="/" class="logo-link">
+        <span class="logo-text">Spa Haha</span>
+      </a>
+    </div>
+    
+    <nav class="main-nav">
+      <a routerLink="/" routerLinkActive="active">Início</a>
+      <a routerLink="/tipos-massagem" routerLinkActive="active">Nossos Serviços</a>
+      <a routerLink="/sobre" routerLinkActive="active">Quem somos</a>
+      <a routerLink="/ajuda" routerLinkActive="active">Ajuda</a>
+      <a routerLink="/contato" routerLinkActive="active">Contato</a>
+    </nav>
+
+    <div class="auth-section">
+      <ng-container *ngIf="authService.isLoggedIn(); else notLoggedIn">
+        <a routerLink="/reserva" class="btn-reserva">Minhas Reservas</a>
+        <a *ngIf="authService.isAdmin()" routerLink="/admin" class="btn-admin">Admin</a>
+        <button (click)="logout()" class="btn-logout">Sair</button>
+      </ng-container>
+      <ng-template #notLoggedIn>
+        <a routerLink="/login" class="btn-login">Entrar</a>
+        <a routerLink="/cadastro" class="btn-cadastro">Cadastrar</a>
+      </ng-template>
+    </div>
+  </div>
+</header>
+

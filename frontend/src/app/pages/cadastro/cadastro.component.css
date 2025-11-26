@@ -1,0 +1,49 @@
+.logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #a27ea6;
+  letter-spacing: 2px;
+}
+
+.endereco-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.endereco-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.erro-mensagem {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.sucesso-mensagem {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .endereco-row {
+    grid-template-columns: 1fr;
+  }
+}
+

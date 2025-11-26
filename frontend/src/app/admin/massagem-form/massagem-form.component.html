@@ -1,0 +1,14 @@
+<p>massagem-form works!</p>
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  <label>Nome:</label>
+  <input formControlName="nome" required />
+
+  <label>Descrição:</label>
+  <textarea formControlName="descricao" required></textarea>
+
+  <label>Preço:</label>
+  <input type="number" formControlName="preco" required min="0" />
+
+  <button type="submit" [disabled]="form.invalid">Salvar</button>
+  <div *ngIf="erro" class="erro">{{ erro }}</div>
+</form>

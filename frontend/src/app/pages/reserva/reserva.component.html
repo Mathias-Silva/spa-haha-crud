@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+<main class="reserva-container">
+  <section class="reserva-section">
+    <h2>Agende sua massagem</h2>
+    <p class="subtitle">Preencha os dados abaixo para confirmar sua reserva</p>
+
+    <form [formGroup]="form" (ngSubmit)="reservar()" class="reserva-form">
+      <div class="form-group">
+        <label for="massagem">Tipo de massagem *</label>
+        <select id="massagem" formControlName="massagem" required>
+          <option value="">Selecione uma massagem</option>
+          <option *ngFor="let m of massagens" [value]="m._id">
+            {{ m.nome }} - R$ {{ m.preco | number:'1.2-2' }}
+          </option>
+        </select>
+        <div *ngIf="form.get('massagem')?.invalid && form.get('massagem')?.touched" class="erro-campo">
+          Selecione um tipo de massagem
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="data">Data *</label>
+        <input type="date" id="data" formControlName="data" required [min]="getMinDate()" />
+        <div *ngIf="form.get('data')?.invalid && form.get('data')?.touched" class="erro-campo">
+          Selecione uma data
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="horario">Horário *</label>
+        <select id="horario" formControlName="horario" required>
+          <option value="">Selecione um horário</option>
+          <option *ngFor="let h of horarios" [value]="h">{{ h }}</option>
+        </select>
+        <div *ngIf="form.get('horario')?.invalid && form.get('horario')?.touched" class="erro-campo">
+          Selecione um horário
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="observacoes">Observações (opcional)</label>
+        <textarea id="observacoes" formControlName="observacoes" rows="4" placeholder="Alguma observação especial?"></textarea>
+      </div>
+
+      <div *ngIf="sucesso" class="sucesso">{{ sucesso }}</div>
+      <div *ngIf="erro" class="erro">{{ erro }}</div>
+
+      <button type="submit" class="btn-reservar" [disabled]="form.invalid || carregando">
+        {{ carregando ? 'Reservando...' : 'Confirmar Reserva' }}
+      </button>
+    </form>
+  </section>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,10 @@
+<div *ngIf="loading">Carregando massagens...</div>
+<div *ngIf="!loading && massagens.length === 0">Nenhuma massagem cadastrada.</div>
+<div class="massagem-list" *ngIf="massagens.length > 0">
+  <div class="massagem-card" *ngFor="let m of massagens">
+    <h3>{{ m.nome }}</h3>
+    <p>{{ m.descricao }}</p>
+    <strong>R$ {{ m.preco | number:'1.2-2' }}</strong>
+    <!-- Botão para reservar ou ver detalhes pode ser adicionado aqui -->
+  </div>
+</div>

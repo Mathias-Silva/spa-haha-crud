@@ -1,0 +1,263 @@
+.tipos-massagem-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.servicos-section {
+  padding: 3rem 0;
+}
+
+.servicos-section h2 {
+  font-size: 2rem;
+  color: #1a1a2e;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.massagens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.massagem-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.massagem-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.massagem-card.selected {
+  border-color: #a27ea6;
+  background-color: #fdf6f7;
+}
+
+.massagem-card h3 {
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.massagem-card .preco {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #a27ea6;
+  margin-bottom: 1rem;
+}
+
+.massagem-card .descricao {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.btn-selecionar {
+  background-color: #a27ea6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.btn-selecionar:hover {
+  background-color: #926e96;
+}
+
+.calendario-section {
+  padding: 3rem 0;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+
+.calendario-section h2 {
+  text-align: center;
+  color: #1a1a2e;
+  margin-bottom: 2rem;
+}
+
+.calendario-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.calendario h3 {
+  text-align: center;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.dia-semana {
+  text-align: center;
+  font-weight: 600;
+  color: #666;
+  padding: 0.5rem;
+}
+
+.dia {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+  border: 1px solid #eee;
+}
+
+.dia:hover {
+  background-color: #f0f0f0;
+}
+
+.dia.today {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  font-weight: bold;
+}
+
+.dia.selected {
+  background-color: #a27ea6;
+  color: white;
+  border-color: #926e96;
+}
+
+.horarios-section h3 {
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.horario-btn {
+  padding: 1rem;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.horario-btn:hover {
+  border-color: #a27ea6;
+  background-color: #fdf6f7;
+}
+
+.horario-btn.selected {
+  background-color: #a27ea6;
+  color: white;
+  border-color: #926e96;
+}
+
+.reserva-summary {
+  margin-top: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.reserva-summary h3 {
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.reserva-summary p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.btn-reservar {
+  margin-top: 1.5rem;
+  background-color: #a27ea6;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.btn-reservar:hover {
+  background-color: #926e96;
+  transform: translateY(-2px);
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+
+  .calendario-container {
+    grid-template-columns: 1fr;
+  }
+
+  .horarios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

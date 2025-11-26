@@ -1,0 +1,130 @@
+<app-header></app-header>
+
+<main class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Seu corpo merece, seu tempo agradece.</h1>
+      <p>Seu momento de paz começa com um clique. Escolha o tipo de massagem que deseja e agende seu horário.</p>
+      <div class="hero-buttons">
+        <a routerLink="/cadastro" class="btn-hero">Agende. Relaxe. Renove.</a>
+        <a routerLink="/tipos-massagem" class="btn-hero-secondary">Conheça nossos serviços</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/img/image1.png" alt="Ambiente relaxante do spa">
+    </div>
+  </section>
+
+  <!-- Serviços Section -->
+  <section class="servicos-section">
+    <h2>Descubra o tipo de massagem que faz sentido para você!</h2>
+    <div class="servicos-grid">
+      <div class="servico-card" *ngFor="let m of massagens.slice(0, 3); let i = index">
+        <div class="servico-image">
+          <img [src]="'assets/img/image' + ((i % 4) + 1) + '.png'" [alt]="m.nome">
+        </div>
+        <h3>{{ m.nome }}</h3>
+        <p>{{ m.descricao }}</p>
+        <div class="servico-footer">
+          <span class="preco">R$ {{ m.preco | number:'1.2-2' }}</span>
+          <a routerLink="/reserva" class="btn-saiba-mais">Saiba Mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Métodos de Relaxamento -->
+  <section class="metodos-section">
+    <h2>Escolha o toque que transforma seu dia.</h2>
+    <p class="section-subtitle">Conheça um pouco dos métodos de relaxamento</p>
+    <div class="metodos-grid">
+      <div class="metodo-card">
+        <div class="metodo-avatar">👋</div>
+        <h3>Massagem Relaxante</h3>
+        <p>Técnicas suaves para alívio do estresse e bem-estar geral.</p>
+      </div>
+      <div class="metodo-card">
+        <div class="metodo-avatar">💆</div>
+        <h3>Massagem Terapêutica</h3>
+        <p>Focada no tratamento de dores e tensões musculares.</p>
+      </div>
+      <div class="metodo-card">
+        <div class="metodo-avatar">🏃</div>
+        <h3>Massagem Desportiva</h3>
+        <p>Especializada para atletas e recuperação muscular.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefícios Section -->
+  <section class="beneficios-section">
+    <div class="beneficios-content">
+      <div class="beneficios-text">
+        <h2>Descubra os benefícios de ter uma massagem</h2>
+        <p>Escolha entre nossos diversos tipos, e experimente essa sensação! A massagem pode transformar seu dia, seu corpo e sua mente.</p>
+        <ul class="beneficios-list">
+          <li>✓ Redução do estresse e ansiedade</li>
+          <li>✓ Alívio de dores musculares</li>
+          <li>✓ Melhora da circulação sanguínea</li>
+          <li>✓ Aumento da flexibilidade</li>
+          <li>✓ Melhora da qualidade do sono</li>
+        </ul>
+        <a routerLink="/reserva" class="btn-agendar">Agendar Massagem</a>
+      </div>
+      <div class="beneficios-image">
+        <img src="assets/img/image2.png" alt="Benefícios da massagem">
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos Section -->
+  <section class="depoimentos-section">
+    <h2>O que nossos clientes estão dizendo?</h2>
+    <p class="section-subtitle">Descubra como a experiência de relaxamento transformou o dia de quem já reservou com a gente:</p>
+    <div class="depoimentos-grid">
+      <div class="depoimento-card">
+        <div class="depoimento-avatar">👤</div>
+        <h4>Ana Souza</h4>
+        <p class="depoimento-text">"A melhor experiência de relaxamento que já tive! A massagem relaxante foi incrível e me ajudou muito com o estresse do trabalho."</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+      <div class="depoimento-card">
+        <div class="depoimento-avatar">👤</div>
+        <h4>Carlos Silva</h4>
+        <p class="depoimento-text">"Como atleta, a massagem desportiva foi essencial para minha recuperação. Profissionais excelentes e ambiente acolhedor!"</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+      <div class="depoimento-card">
+        <div class="depoimento-avatar">👤</div>
+        <h4>Maria Santos</h4>
+        <p class="depoimento-text">"Sistema de reservas muito fácil de usar. A massagem terapêutica resolveu minhas dores nas costas. Recomendo!"</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <h2>Dúvidas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs">
+        <div class="faq-question" (click)="toggleFaq(faq)">
+          <h3>{{ faq.pergunta }}</h3>
+          <span class="faq-icon">{{ faq.open ? '−' : '+' }}</span>
+        </div>
+        <div class="faq-answer" [class.open]="faq.open">
+          <p>{{ faq.resposta }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de Massagens -->
+  <section class="massagens-section">
+    <h2>Nossos Serviços</h2>
+    <app-massagem-list></app-massagem-list>
+  </section>
+</main>
+
+<app-footer></app-footer>

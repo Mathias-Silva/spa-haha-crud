@@ -1,0 +1,25 @@
+<h2>Massagens</h2>
+<app-massagem-form *ngIf="editando" [massagem]="editando" (saved)="carregar()"></app-massagem-form>
+<app-massagem-form *ngIf="!editando" (saved)="carregar()"></app-massagem-form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of massagens">
+      <td>{{ m.nome }}</td>
+      <td>{{ m.descricao }}</td>
+      <td>R$ {{ m.preco | number:'1.2-2' }}</td>
+      <td>
+        <button (click)="editar(m)">Editar</button>
+        <button (click)="excluir(m._id!)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

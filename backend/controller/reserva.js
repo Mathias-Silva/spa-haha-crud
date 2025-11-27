@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Reserva = require('../models/reserva');
+const Reserva = require('../repository/reserva');
 const { auth, admin } = require('../config/authMiddleware');
 
 // Criar reserva (usuário logado)

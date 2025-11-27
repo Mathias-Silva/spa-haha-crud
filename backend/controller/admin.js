@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Massagem = require('../models/massagem');
+const Massagem = require('../repository/massagem');
 const { admin } = require('../config/authMiddleware');
 
-// Criar massagem
+// Criando massagem
 router.post('/massagens', admin, async (req, res) => {
     try {
         const { nome, preco, descricao } = req.body;

@@ -9,7 +9,7 @@ npm install
 
 ### 2. Configurar MySQL
 
-Certifique-se de que o MySQL está instalado e rodando.
+Certifique-se de que o MySQL está instalado.
 
 ### 3. Criar o banco de dados
 
@@ -21,9 +21,53 @@ mysql -u root -p < database/schema.sql
 
 Ou execute manualmente no MySQL:
 ```sql
-CREATE DATABASE IF NOT EXISTS dbSpa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS dbSpa;
 USE dbSpa;
--- Copie e cole o conteúdo do arquivo database/schema.sql
+
+-- Tabela de usuários
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    admin BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_email (email),
+    INDEX idx_admin (admin)
+);
+
+-- Tabela de massagens
+CREATE TABLE IF NOT EXISTS massagens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL UNIQUE,
+    preco DECIMAL(10, 2) NOT NULL,
+    descricao TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_nome (nome),
+    INDEX idx_preco (preco)
+) ;
+
+-- Tabela de reservas
+CREATE TABLE IF NOT EXISTS reservas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    massagem_id INT NOT NULL,
+    data DATE NOT NULL,
+    horario VARCHAR(10) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (massagem_id) REFERENCES massagens(id) ON DELETE CASCADE,
+    INDEX idx_user (user_id),
+    INDEX idx_massagem (massagem_id),
+    INDEX idx_data (data),
+    INDEX idx_data_horario (data, horario),
+    UNIQUE KEY unique_reserva (user_id, data, horario)
+) ;
+
+
 ```
 
 ### 4. Configurar variáveis de ambiente
@@ -45,11 +89,6 @@ PORT=3000
 npm start
 ```
 
-ou em modo desenvolvimento:
-
-```bash
-npm run dev
-```
 
 ## Estrutura do Banco de Dados
 

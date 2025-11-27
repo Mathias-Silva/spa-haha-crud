@@ -10,8 +10,8 @@ import { FooterComponent } from '../../shared/footer/footer.component';
   selector: 'app-contato',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule, HeaderComponent, FooterComponent],
-  templateUrl: './contato.component.html',
-  styleUrls: ['./contato.component.css']
+  template: './contato.component.html',
+  styles: ['./contato.component.css']
 })
 export class ContatoComponent {
   contatoForm: FormGroup;

@@ -1,25 +1,38 @@
-<h2>Massagens</h2>
-<app-massagem-form *ngIf="editando" [massagem]="editando" (saved)="carregar()"></app-massagem-form>
-<app-massagem-form *ngIf="!editando" (saved)="carregar()"></app-massagem-form>
+<div class="massagem-list-container">
+  <h2>Massagens Cadastradas</h2>
+  
+  <app-massagem-form *ngIf="editando" [massagem]="editando" (saved)="carregar()"></app-massagem-form>
+  <app-massagem-form *ngIf="!editando" (saved)="carregar()"></app-massagem-form>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-      <th>Preço</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let m of massagens">
-      <td>{{ m.nome }}</td>
-      <td>{{ m.descricao }}</td>
-      <td>R$ {{ m.preco | number:'1.2-2' }}</td>
-      <td>
-        <button (click)="editar(m)">Editar</button>
-        <button (click)="excluir(m._id!)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <div *ngIf="massagens.length === 0" class="sem-massagens">
+    <div class="sem-massagens-icon">💆</div>
+    <p>Nenhuma massagem cadastrada ainda.</p>
+    <p>Use o formulário acima para cadastrar a primeira massagem.</p>
+  </div>
+
+  <table *ngIf="massagens.length > 0" class="massagens-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of massagens">
+        <td>{{ m.nome }}</td>
+        <td>{{ m.descricao }}</td>
+        <td>R$ {{ m.preco | number:'1.2-2' }}</td>
+        <td class="acoes-cell">
+          <button class="btn-editar" (click)="editar(m)">
+            ✏️ Editar
+          </button>
+          <button class="btn-excluir" (click)="excluir(m._id!)">
+            🗑️ Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

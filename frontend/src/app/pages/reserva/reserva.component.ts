@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ReservaService } from '../../services/reserva.service';
+import { ReservaService, Reserva, MassagemPopulada } from '../../services/reserva.service';
 import { MassagemService, Massagem } from '../../services/massagem.service';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
@@ -62,9 +62,13 @@ export class ReservaComponent implements OnInit {
     return hoje.toISOString().split('T')[0];
   }
 
+  reservaConfirmada: Reserva | null = null;
+
   reservar(): void {
     this.sucesso = '';
     this.erro = '';
+    this.reservaConfirmada = null;
+    
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -72,18 +76,30 @@ export class ReservaComponent implements OnInit {
 
     this.carregando = true;
     this.reservaService.criarReserva(this.form.value).subscribe({
-      next: () => { 
+      next: (reserva) => { 
+        this.reservaConfirmada = reserva;
         this.sucesso = 'Reserva realizada com sucesso!'; 
         this.form.reset();
         this.carregando = false;
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 2000);
       },
       error: err => {
         this.erro = err.error?.message || 'Erro ao reservar.';
         this.carregando = false;
       }
     });
+  }
+
+  irParaMinhasReservas(): void {
+    window.location.href = '/minhas-reservas';
+  }
+
+  getMassagemNome(massagem: string | MassagemPopulada | undefined): string {
+    if (!massagem) return '-';
+    return typeof massagem === 'string' ? '-' : massagem.nome;
+  }
+
+  getMassagemPreco(massagem: string | MassagemPopulada | undefined): number {
+    if (!massagem || typeof massagem === 'string') return 0;
+    return massagem.preco;
   }
 }

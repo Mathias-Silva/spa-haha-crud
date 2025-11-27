@@ -43,10 +43,54 @@
         <textarea id="observacoes" formControlName="observacoes" rows="4" placeholder="Alguma observação especial?"></textarea>
       </div>
 
-      <div *ngIf="sucesso" class="sucesso">{{ sucesso }}</div>
       <div *ngIf="erro" class="erro">{{ erro }}</div>
 
-      <button type="submit" class="btn-reservar" [disabled]="form.invalid || carregando">
+      <!-- Mensagem de Confirmação -->
+      <div *ngIf="sucesso && reservaConfirmada" class="confirmacao-card">
+        <div class="confirmacao-header">
+          <div class="confirmacao-icon">✅</div>
+          <h3>Reserva Confirmada!</h3>
+        </div>
+        <div class="confirmacao-content">
+          <p class="confirmacao-mensagem">Sua reserva foi realizada com sucesso!</p>
+          <div class="confirmacao-detalhes">
+            <div class="detalhe-confirmacao">
+              <span class="label">Massagem:</span>
+              <span class="value">{{ getMassagemNome(reservaConfirmada.massagem) }}</span>
+            </div>
+            <div class="detalhe-confirmacao">
+              <span class="label">Data:</span>
+              <span class="value">{{ reservaConfirmada.data | date:'dd/MM/yyyy' }}</span>
+            </div>
+            <div class="detalhe-confirmacao">
+              <span class="label">Horário:</span>
+              <span class="value">{{ reservaConfirmada.horario }}</span>
+            </div>
+            <div class="detalhe-confirmacao">
+              <span class="label">Valor:</span>
+              <span class="value preco">R$ {{ getMassagemPreco(reservaConfirmada.massagem) | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          <div class="confirmacao-aviso">
+            <p>⚠️ <strong>Atenção:</strong> Sua reserva está aguardando confirmação de pagamento. 
+            Você receberá um e-mail quando o pagamento for confirmado.</p>
+          </div>
+          <div class="confirmacao-acoes">
+            <button type="button" class="btn-ver-reservas" (click)="irParaMinhasReservas()">
+              Ver Minhas Reservas
+            </button>
+            <button type="button" class="btn-nova-reserva-confirmacao" (click)="form.reset(); sucesso = ''; reservaConfirmada = null">
+              Fazer Nova Reserva
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button 
+        *ngIf="!sucesso"
+        type="submit" 
+        class="btn-reservar" 
+        [disabled]="form.invalid || carregando">
         {{ carregando ? 'Reservando...' : 'Confirmar Reserva' }}
       </button>
     </form>

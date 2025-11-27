@@ -85,6 +85,130 @@
   cursor: not-allowed;
 }
 
+.confirmacao-card {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border: 2px solid #28a745;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+}
+
+.confirmacao-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.confirmacao-icon {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.confirmacao-header h3 {
+  color: #155724;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.confirmacao-mensagem {
+  text-align: center;
+  color: #155724;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.confirmacao-detalhes {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.detalhe-confirmacao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detalhe-confirmacao .label {
+  font-size: 0.85rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detalhe-confirmacao .value {
+  font-weight: 600;
+  color: #1a1a2e;
+  font-size: 1.1rem;
+}
+
+.detalhe-confirmacao .value.preco {
+  color: #a27ea6;
+  font-size: 1.3rem;
+}
+
+.confirmacao-aviso {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.confirmacao-aviso p {
+  margin: 0;
+  color: #856404;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.confirmacao-acoes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-ver-reservas {
+  flex: 1;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-ver-reservas:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.4);
+}
+
+.btn-nova-reserva-confirmacao {
+  flex: 1;
+  padding: 1rem 2rem;
+  background: white;
+  color: #a27ea6;
+  border: 2px solid #a27ea6;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-nova-reserva-confirmacao:hover {
+  background-color: #a27ea6;
+  color: white;
+}
+
 .sucesso {
   color: #155724;
   background-color: #d4edda;

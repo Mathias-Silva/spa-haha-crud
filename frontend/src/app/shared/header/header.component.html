@@ -16,7 +16,10 @@
 
     <div class="auth-section">
       <ng-container *ngIf="authService.isLoggedIn(); else notLoggedIn">
-        <a routerLink="/reserva" class="btn-reserva">Minhas Reservas</a>
+        <a routerLink="/minhas-reservas" class="btn-reserva">
+          📅 Minhas Reservas
+        </a>
+        <a routerLink="/reserva" class="btn-nova-reserva-header">➕ Nova Reserva</a>
         <a *ngIf="authService.isAdmin()" routerLink="/admin" class="btn-admin">Admin</a>
         <button (click)="logout()" class="btn-logout">Sair</button>
       </ng-container>

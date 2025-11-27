@@ -1,0 +1,146 @@
+<app-header></app-header>
+
+<main class="minhas-reservas-container">
+  <section class="header-section">
+    <h1>Minhas Reservas</h1>
+    <p class="subtitle">Acompanhe o histórico e status das suas reservas</p>
+  </section>
+
+  <section class="stats-section" *ngIf="!loading && reservas.length > 0">
+    <div class="stat-card">
+      <div class="stat-icon">📅</div>
+      <div class="stat-content">
+        <h3>{{ getTotalReservas() }}</h3>
+        <p>Total de Reservas</p>
+      </div>
+    </div>
+    <div class="stat-card pendente">
+      <div class="stat-icon">⏳</div>
+      <div class="stat-content">
+        <h3>{{ getReservasPendentes() }}</h3>
+        <p>Pendentes</p>
+      </div>
+    </div>
+    <div class="stat-card pago">
+      <div class="stat-icon">✅</div>
+      <div class="stat-content">
+        <h3>{{ getReservasPagas() }}</h3>
+        <p>Confirmadas</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="filtros-section" *ngIf="!loading && reservas.length > 0">
+    <h2>Filtrar Reservas</h2>
+    <div class="filtros-buttons">
+      <button 
+        class="filtro-btn" 
+        [class.active]="filtro === 'todas'"
+        (click)="filtro = 'todas'">
+        Todas
+      </button>
+      <button 
+        class="filtro-btn" 
+        [class.active]="filtro === 'pendentes'"
+        (click)="filtro = 'pendentes'">
+        Pendentes
+      </button>
+      <button 
+        class="filtro-btn" 
+        [class.active]="filtro === 'pagas'"
+        (click)="filtro = 'pagas'">
+        Confirmadas
+      </button>
+      <button 
+        class="filtro-btn" 
+        [class.active]="filtro === 'passadas'"
+        (click)="filtro = 'passadas'">
+        Passadas
+      </button>
+    </div>
+  </section>
+
+  <section class="reservas-section">
+    <div *ngIf="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Carregando suas reservas...</p>
+    </div>
+
+    <div *ngIf="!loading && reservas.length === 0" class="empty-state">
+      <div class="empty-icon">📋</div>
+      <h2>Nenhuma reserva encontrada</h2>
+      <p>Você ainda não fez nenhuma reserva. Que tal agendar sua primeira massagem?</p>
+      <a routerLink="/reserva" class="btn-nova-reserva">Fazer Nova Reserva</a>
+    </div>
+
+    <div *ngIf="!loading && reservas.length > 0 && getReservasFiltradas().length === 0" class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <h2>Nenhuma reserva encontrada</h2>
+      <p>Não há reservas com o filtro selecionado.</p>
+    </div>
+
+    <div class="reservas-grid" *ngIf="!loading && getReservasFiltradas().length > 0">
+      <div 
+        class="reserva-card" 
+        *ngFor="let r of getReservasFiltradas()"
+        [class.passada]="isPassada(r.data)"
+        [class.paga]="r.pago">
+        
+        <div class="reserva-header">
+          <div class="reserva-status">
+            <span class="status-badge" [class.pago]="r.pago" [class.pendente]="!r.pago" [class.passada]="isPassada(r.data)">
+              <span *ngIf="r.pago">✓ Pago</span>
+              <span *ngIf="!r.pago && !isPassada(r.data)">⏳ Pendente</span>
+              <span *ngIf="!r.pago && isPassada(r.data)">📅 Passada</span>
+            </span>
+          </div>
+          <div class="reserva-data">
+            <span class="data-label">Data:</span>
+            <span class="data-value">{{ r.data | date:'dd/MM/yyyy' }}</span>
+          </div>
+        </div>
+
+        <div class="reserva-content">
+          <div class="reserva-info">
+            <h3>{{ getMassagemNome(r.massagem) }}</h3>
+            <p class="reserva-descricao">{{ getMassagemDescricao(r.massagem) }}</p>
+          </div>
+
+          <div class="reserva-detalhes">
+            <div class="detalhe-item">
+              <span class="detalhe-label">Horário:</span>
+              <span class="detalhe-value">{{ r.horario }}</span>
+            </div>
+            <div class="detalhe-item">
+              <span class="detalhe-label">Valor:</span>
+              <span class="detalhe-value preco">R$ {{ getMassagemPreco(r.massagem) | number:'1.2-2' }}</span>
+            </div>
+          </div>
+
+          <div *ngIf="r.observacoes" class="reserva-observacoes">
+            <strong>Observações:</strong>
+            <p>{{ r.observacoes }}</p>
+          </div>
+        </div>
+
+        <div class="reserva-footer">
+          <div class="reserva-id">
+            ID: {{ r._id }}
+          </div>
+          <div *ngIf="!r.pago && !isPassada(r.data)" class="reserva-aviso">
+            ⚠️ Aguardando confirmação de pagamento
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nova-reserva-section" *ngIf="!loading">
+    <a routerLink="/reserva" class="btn-nova-reserva-large">
+      ➕ Fazer Nova Reserva
+    </a>
+  </section>
+</main>
+
+<app-footer></app-footer>
+

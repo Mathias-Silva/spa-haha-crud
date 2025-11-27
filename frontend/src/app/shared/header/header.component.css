@@ -54,6 +54,7 @@
 .btn-login,
 .btn-cadastro,
 .btn-reserva,
+.btn-nova-reserva-header,
 .btn-admin,
 .btn-logout {
   padding: 0.5rem 1rem;
@@ -63,6 +64,7 @@
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
 .btn-login {
@@ -78,12 +80,24 @@
 
 .btn-cadastro,
 .btn-reserva {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn-reserva:hover {
+  background-color: #357abd;
+}
+
+.btn-nova-reserva-header {
   background-color: #a27ea6;
   color: white;
 }
 
-.btn-cadastro:hover,
-.btn-reserva:hover {
+.btn-nova-reserva-header:hover {
+  background-color: #926e96;
+}
+
+.btn-cadastro:hover {
   background-color: #926e96;
 }
 

@@ -19,9 +19,9 @@ export class MassagemFormComponent implements OnChanges {
 
   constructor(private fb: FormBuilder, private massagemService: MassagemService) {
     this.form = this.fb.group({
-      nome: ['', Validators.required],
-      descricao: ['', Validators.required],
-      preco: [0, [Validators.required, Validators.min(0)]]
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      descricao: ['', [Validators.required, Validators.minLength(10)]],
+      preco: [0, [Validators.required, Validators.min(0.01)]]
     });
   }
 
@@ -35,7 +35,11 @@ export class MassagemFormComponent implements OnChanges {
 
   salvar(): void {
     this.erro = '';
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    
     const req = this.massagem && this.massagem._id
       ? this.massagemService.update(this.massagem._id, this.form.value)
       : this.massagemService.create(this.form.value);
@@ -43,9 +47,19 @@ export class MassagemFormComponent implements OnChanges {
     req.subscribe({
       next: () => {
         this.form.reset();
+        this.erro = '';
         this.saved.emit();
       },
       error: err => this.erro = err.error?.message || 'Erro ao salvar.'
     });
+  }
+
+  cancelar(): void {
+    this.form.reset();
+    this.erro = '';
+    // Emite evento para limpar o modo de edição no componente pai
+    if (this.massagem) {
+      this.saved.emit();
+    }
   }
 }

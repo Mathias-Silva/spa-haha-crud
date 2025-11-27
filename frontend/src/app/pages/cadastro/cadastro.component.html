@@ -40,8 +40,38 @@
 
       <article class="termos">
         <input type="checkbox" id="termos" formControlName="termos">
-        <label for="termos">Eu li e concordo com os <strong>Termos de Uso</strong></label>
+        <label for="termos" class="link-termos" (click)="abrirModalTermos()">
+          Eu li e concordo com os <strong>Termos de Uso!</strong>
+        </label>
       </article>
+      
+      <!-- Modal -->
+      <div class="modal" *ngIf="mostrarModal">
+        <div class="modal-content">
+          <h3>Termos de Uso</h3>
+          <p>
+            Termos de Uso
+Última atualização: [27/11/2025]
+Bem-vindo ao nosso site de agendamento de massagens Spa haha. Ao utilizar nossos serviços, você concorda com os seguintes termos:
+1. Aceitação dos Termos
+Ao acessar ou utilizar este site, você declara que leu, entendeu e concorda com estes Termos de Uso. Caso não concorde, não utilize nossos serviços.
+2. Serviços Oferecidos
+Nosso site permite que você agende sessões de massagem com profissionais cadastrados. As informações fornecidas devem ser verdadeiras e atualizadas.
+3. Responsabilidade do Usuário
+Fornecer dados corretos para o agendamento.
+Comparecer no horário marcado ou cancelar com antecedência mínima de [24 horas].
+Não utilizar o serviço para fins ilegais ou inadequados.
+4. Política de Cancelamento
+Cancelamentos devem ser realizados com pelo menos [24 horas] de antecedência. Cancelamentos fora do prazo podem gerar cobrança parcial ou total do valor do serviço.
+5. Limitação de Responsabilidade
+Não nos responsabilizamos por atrasos, indisponibilidade do profissional ou problemas decorrentes de informações incorretas fornecidas pelo usuário.
+6. Privacidade
+Seus dados pessoais serão tratados conforme nossa Política de Privacidade, disponível no site.
+ 
+          </p>
+          <button (click)="fecharModal()">Fechar</button>
+        </div>
+      </div>    
 
       <div *ngIf="erro" class="erro-mensagem">{{ erro }}</div>
       <div *ngIf="sucesso" class="sucesso-mensagem">{{ sucesso }}</div>
@@ -54,9 +84,10 @@
     <p class="login-link">
       Já tem cadastro? <a routerLink="/login"><strong>Faça Login!</strong></a>
     </p>
+    <a href="/home">Voltar</a>
   </section>
 
   <article class="imagem-area">
-    <img src="assets/img/image4.png" alt="Ambiente de Spa relaxante">
+    <img src="assets/img/image2.png" alt="Ambiente de Spa relaxante">
   </article>
 </main>

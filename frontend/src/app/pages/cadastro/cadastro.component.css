@@ -41,6 +41,39 @@
   font-size: 0.9rem;
 }
 
+
+.link-termos {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.link-termos:hover {
+  color: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .endereco-row {
     grid-template-columns: 1fr;

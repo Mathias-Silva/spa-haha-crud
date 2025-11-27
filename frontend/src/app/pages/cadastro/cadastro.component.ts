@@ -74,4 +74,15 @@ export class CadastroComponent {
       this.cadastroForm.markAllAsTouched();
     }
   }
+
+  
+    mostrarModal = false;
+
+    abrirModalTermos() {
+    this.mostrarModal = true;
+    }
+
+    fecharModal() {
+    this.mostrarModal = false;
+    }
 }

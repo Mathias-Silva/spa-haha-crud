@@ -22,6 +22,6 @@ export const routes: Routes = [
   { path: 'sobre', component: SobreComponent },
   { path: 'quem-somos', component: SobreComponent },
   { path: 'contato', component: ContatoComponent },
-  { path: 'ajuda', component: HomeComponent },
+
   { path: '**', redirectTo: '' }
 ];
